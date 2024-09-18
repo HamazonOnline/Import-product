@@ -50,21 +50,11 @@ namespace HamazonImportProduct
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Set the license context here
 
             InitializeComponent();
+
             Products = ImportExcelFile();
-            //foreach (var item in Products)
-            //{
-            //    if (item.Barcode.Length < 10)
-            //    {
-            //        string longBarcode = item.Barcode.PadLeft(10, '0'); //barcode length is 13 digits. always start with 729
-            //        longBarcode = "729" + longBarcode;
-            //        Console.WriteLine("barcode: " + item.Barcode + " long barcode: " + longBarcode);
-            //        //find product in database per short/long barcode
-            //        //if found - update parameters: status, 
-            //        //if not found - add new produc
-            //    }
-            //}
         }
 
+        //get all categories from database
         private List<Category> GetCategories()
         {
             using(Entities context = new Entities())
@@ -81,6 +71,7 @@ namespace HamazonImportProduct
             }
         }
 
+        //get all families from database
         private List<SimpleObject> GetFamilies()
         {
             using(Entities context = new Entities())
@@ -94,6 +85,7 @@ namespace HamazonImportProduct
             }
         }
 
+        //get all unit measures from database
         private List<SimpleObject> GetUnitMeasure()
         {
             using (Entities context = new Entities())
@@ -107,6 +99,7 @@ namespace HamazonImportProduct
             }
         }
 
+        //get all brands from database
         public List<SimpleObject> GetBrands()
         {
             using(Entities context = new Entities())
@@ -119,6 +112,7 @@ namespace HamazonImportProduct
             }
         }
 
+        //get all providers from database
         public List<SimpleObject> GetProviders()
         {
             using(Entities context = new Entities())
@@ -132,6 +126,7 @@ namespace HamazonImportProduct
             }
         }
 
+        //get all products from database
         public List<Product> GetOldProducts()
         {
             using(Entities context = new Entities())
@@ -148,8 +143,6 @@ namespace HamazonImportProduct
                     ProviderName = x.ProviderId.ToString(),
                     GroupName = x.FamilyId.ToString(),
 
-                    //Category2 = x.Category2,
-                    //Category3 = x.Category3
                 }).ToList();
                 return oldProducts;
             }
@@ -183,7 +176,7 @@ namespace HamazonImportProduct
                         }
                         emptyColumnIndex = sheet.Dimension.End.Column;
 
-                        //find column indexes
+                        //find column indexes per headers
                         int barcodeIndex = Array.IndexOf(headers, "ברקוד");
                         int productNameIndex = Array.IndexOf(headers, "שם פריט");
                         int quantityIndex = Array.IndexOf(headers, "כמות");
@@ -196,6 +189,7 @@ namespace HamazonImportProduct
                         int category2Index = Array.IndexOf(headers, "קבוצה");
                         int category3Index = Array.IndexOf(headers, "תת קבוצה");
 
+                        //if no barcode column, skip the sheet
                         if (barcodeIndex == -1)
                         {
                             continue;
@@ -369,11 +363,6 @@ namespace HamazonImportProduct
                         Console.WriteLine("sheet: " + sheet.Name + "new product counter: " + newProducts.Count);
                         //save changes in excel
                         package.Save();
-                        //xlApp.DisplayAlerts = false;
-    //xlWorkBook.Save();
-
-                        //xlWorkBook.Close();// Type.Missing, Type.Missing, Type.Missing);
-                        //xlApp.Quit();
                     }           
                 }
             }
@@ -668,80 +657,6 @@ namespace HamazonImportProduct
                     return false;
                 }
             }
-        }
-
-        public List<Product> ImportCsvFile()
-        {
-            List<Product> newProducts = new List<Product>();
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            //dlg.DefaultExt = ".xlns";
-            //dlg.Filter = "Excel Files (*.xlsx)|*.xlsx";
-            dlg.DefaultExt = ".csv";
-            dlg.Filter = "CSV Files (*.csv)|*.csv";
-            Nullable<bool> result = dlg.ShowDialog();
-            if (result == true)
-            {
-                // Open document
-                string filename = dlg.FileName;
-                //read csv file
-                string[] lines = File.ReadAllLines(filename, System.Text.Encoding.GetEncoding("windows-1255"));
-                string[] headers = lines[0].Split(',');
-                
-                lines = lines.Skip(1).ToArray(); //remove headers
-                                                 //convert to list of newProductDTO
-
-                foreach (var line in lines)
-                {
-                    TextFieldParser parser = new TextFieldParser(new StringReader(line));
-                    parser.HasFieldsEnclosedInQuotes = true;
-                    parser.SetDelimiters(",");
-                    string[] data = null;
-                    while (!parser.EndOfData)
-                    {
-                        data = parser.ReadFields();
-                    }
-                    parser.Close();
-
-                    string[] values = line.Split(',');
-                    Product p = new Product();
-
-                    int barcodeIndex = Array.IndexOf(headers, "ברקוד");
-                    int productNameIndex = Array.IndexOf(headers, "שם מוצר");
-                    int quantityIndex = Array.IndexOf(headers, "כמות");
-                    int unitNameIndex = Array.IndexOf(headers, "יחידת מידה");
-                    int packageQuantityIndex = Array.IndexOf(headers, "כמות במארז");
-                    int brandNameIndex = Array.IndexOf(headers, "מותג");
-                    int providerNameIndex = Array.IndexOf(headers, "ספק");
-                    int groupNameIndex = Array.IndexOf(headers, "מקבץ");
-                    int category1Index = Array.IndexOf(headers, "מחלקה");
-                    int category2Index = Array.IndexOf(headers, "קבוצה");
-                    int category3Index = Array.IndexOf(headers, "תת קבוצה");
-
-                    if (barcodeIndex != -1) p.Barcode = data[barcodeIndex];
-                    p.ProductName = data[productNameIndex];
-                    p.Quantity = data[quantityIndex];
-                    p.UnitName = data[unitNameIndex];
-                    p.PackageQuantity = data[packageQuantityIndex];
-                    p.BrandName = data[brandNameIndex];
-                    p.ProviderName = data[providerNameIndex];
-                    p.GroupName = data[groupNameIndex];
-                    p.Category1 = data[category1Index];
-                    p.Category2 = data[category2Index];
-                    p.Category3 = data[category3Index];
-
-                    newProducts.Add(p);
-
-                    //    newProducts.Add(n);
-
-                    //}
-                    //if (newProducts.Count == 0)
-                    //{
-                    //    MessageBox.Show("אין מוצרים חדשים לייבא");
-                    //    return;
-                    //}
-                }
-            }
-            return newProducts;
         }
     }
 }
