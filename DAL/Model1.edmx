@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hamazonEntities.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="family">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ProductMkt" Type="int" />
+          <Property Name="Active" Type="bool" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsertUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="p_brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="p_category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="FatherId" Type="int" />
+          <Property Name="CategoryLevel" Type="int" />
+          <Property Name="OrderNumber" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bool" Nullable="false" />
+          <Property Name="PathUrl" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="p_provider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Active" Type="bool" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="45" />
+          <Property Name="LastName" Type="varchar" MaxLength="45" />
+          <Property Name="TelPhone" Type="varchar" MaxLength="12" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+          <Property Name="Phone2" Type="varchar" MaxLength="12" />
+          <Property Name="Town" Type="varchar" MaxLength="45" />
+          <Property Name="StreetName" Type="varchar" MaxLength="45" />
+          <Property Name="StreetNumber" Type="int" />
+          <Property Name="HouseNumber" Type="int" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="AddressComment" Type="varchar" MaxLength="45" />
+          <Property Name="ComaxId" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="45" />
+          <Property Name="Tz" Type="varchar" MaxLength="15" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="100" />
+          <Property Name="DeliveryFrequencyId" Type="int" />
+          <Property Name="CompleteCarton" Type="bool" />
+          <Property Name="SafetyStock" Type="int" />
+          <Property Name="PartSafetyStock" Type="int" />
+          <Property Name="OrderThroughId" Type="int" />
+          <Property Name="internalId" Type="int" />
+        </EntityType>
+        <EntityType Name="p_unit_measure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Mkt" />
+          </Key>
+          <Property Name="Mkt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubMkt" Type="varchar" MaxLength="25" />
+          <Property Name="Barcode" Type="varchar" MaxLength="25" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="StorageModeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="ViewBrand" Type="bool" Nullable="false" />
+          <Property Name="PackageQuantity" Type="int" />
+          <Property Name="WeightQuantity" Type="double" />
+          <Property Name="UnitMeasureId" Type="int" Nullable="false" />
+          <Property Name="Weighable" Type="bool" Nullable="false" />
+          <Property Name="WeightUnit" Type="double" />
+          <Property Name="FamilyId" Type="int" />
+          <Property Name="ViewOutOfStockId" Type="int" Nullable="false" />
+          <Property Name="KashrutFeatureId" Type="int" Nullable="false" />
+          <Property Name="KashrutId" Type="int" Nullable="false" />
+          <Property Name="PassoverKashrutId" Type="int" />
+          <Property Name="PassoverFeatureId" Type="int" />
+          <Property Name="AfterPassoverId" Type="int" />
+          <Property Name="VerifyKashrut" Type="bool" Nullable="false" />
+          <Property Name="DairyId" Type="int" />
+          <Property Name="DepositProduct" Type="bool" />
+          <Property Name="VatProduct" Type="bool" />
+          <Property Name="SupervisedPrice" Type="bool" />
+          <Property Name="BuyingPrice" Type="double" />
+          <Property Name="PricePerProfitPercent" Type="double" />
+          <Property Name="Package_PricePerUnit" Type="double" />
+          <Property Name="ManufacturerId" Type="int" />
+          <Property Name="ProviderId" Type="int" />
+          <Property Name="ExchangeProviderId" Type="int" />
+          <Property Name="ExchangeProvider2Id" Type="int" />
+          <Property Name="GrossWeightLoss" Type="double" />
+          <Property Name="ManufacturerPackageQuantity" Type="int" />
+          <Property Name="MiniPackageQuantity" Type="int" />
+          <Property Name="MasterPackageQuantity" Type="int" />
+          <Property Name="FlatQuantity" Type="int" />
+          <Property Name="ManufacturerPackageWeight" Type="double" />
+          <Property Name="ManufacturerPackageSize" Type="int" />
+          <Property Name="UnloadManufacturerPackageId" Type="int" />
+          <Property Name="BoxQuantity" Type="int" />
+          <Property Name="BoxTypeId" Type="int" />
+          <Property Name="BoxStorageWayId" Type="int" />
+          <Property Name="Height" Type="double" />
+          <Property Name="Cube" Type="int" />
+          <Property Name="Action" Type="int" />
+          <Property Name="ExpiredDays" Type="int" />
+          <Property Name="MinExpiredDays" Type="int" />
+          <Property Name="ExpiredAllert" Type="bool" />
+          <Property Name="Separated" Type="bool" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UpdateDateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyProduct" Type="bool" Nullable="false" />
+          <Property Name="CollectedProduct" Type="bool" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="DailyUpdate" Type="bool" />
+          <Property Name="orderNumber" Type="double" Nullable="false" />
+          <Property Name="WeightJump" Type="double" Nullable="false" />
+          <Property Name="GrossWeight" Type="double" Nullable="false" />
+          <Property Name="NewInGs1" Type="bool" Nullable="false" />
+          <Property Name="ProductGs1Id" Type="int" />
+          <Property Name="ShowExpired" Type="bool" />
+          <Property Name="NewStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="product_category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductMkt" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="BrandFk">
+          <End Role="p_brand" Type="Self.p_brand" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_product_category_FK">
+          <End Role="p_category" Type="Self.p_category" Multiplicity="1" />
+          <End Role="product_category" Type="Self.product_category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product_category">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExchangeProvider2Fk">
+          <End Role="p_provider" Type="Self.p_provider" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ExchangeProvider2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExchangeProviderFk">
+          <End Role="p_provider" Type="Self.p_provider" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ExchangeProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FamilyFk">
+          <End Role="family" Type="Self.family" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="family">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="FamilyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productMkt">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="family" Type="Self.family" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Mkt" />
+            </Principal>
+            <Dependent Role="family">
+              <PropertyRef Name="ProductMkt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductsFk">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="product_category" Type="Self.product_category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Mkt" />
+            </Principal>
+            <Dependent Role="product_category">
+              <PropertyRef Name="ProductMkt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProviderFk">
+          <End Role="p_provider" Type="Self.p_provider" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="unit_measure_product_FK">
+          <End Role="p_unit_measure" Type="Self.p_unit_measure" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_unit_measure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="UnitMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UnitMeasureFk">
+          <End Role="p_unit_measure" Type="Self.p_unit_measure" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_unit_measure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="UnitMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hamazonEntitiesStoreContainer">
+          <EntitySet Name="family" EntityType="Self.family" Schema="hamazon" store:Type="Tables" />
+          <EntitySet Name="p_brand" EntityType="Self.p_brand" Schema="hamazon" store:Type="Tables" />
+          <EntitySet Name="p_category" EntityType="Self.p_category" Schema="hamazon" store:Type="Tables" />
+          <EntitySet Name="p_provider" EntityType="Self.p_provider" Schema="hamazon" store:Type="Tables" />
+          <EntitySet Name="p_unit_measure" EntityType="Self.p_unit_measure" Schema="hamazon" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="hamazon" store:Type="Tables" />
+          <EntitySet Name="product_category" EntityType="Self.product_category" Schema="hamazon" store:Type="Tables" />
+          <AssociationSet Name="BrandFk" Association="Self.BrandFk">
+            <End Role="p_brand" EntitySet="p_brand" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="category_product_category_FK" Association="Self.category_product_category_FK">
+            <End Role="p_category" EntitySet="p_category" />
+            <End Role="product_category" EntitySet="product_category" />
+          </AssociationSet>
+          <AssociationSet Name="ExchangeProvider2Fk" Association="Self.ExchangeProvider2Fk">
+            <End Role="p_provider" EntitySet="p_provider" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="ExchangeProviderFk" Association="Self.ExchangeProviderFk">
+            <End Role="p_provider" EntitySet="p_provider" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FamilyFk" Association="Self.FamilyFk">
+            <End Role="family" EntitySet="family" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="productMkt" Association="Self.productMkt">
+            <End Role="product" EntitySet="product" />
+            <End Role="family" EntitySet="family" />
+          </AssociationSet>
+          <AssociationSet Name="ProductsFk" Association="Self.ProductsFk">
+            <End Role="product" EntitySet="product" />
+            <End Role="product_category" EntitySet="product_category" />
+          </AssociationSet>
+          <AssociationSet Name="ProviderFk" Association="Self.ProviderFk">
+            <End Role="p_provider" EntitySet="p_provider" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="unit_measure_product_FK" Association="Self.unit_measure_product_FK">
+            <End Role="p_unit_measure" EntitySet="p_unit_measure" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="UnitMeasureFk" Association="Self.UnitMeasureFk">
+            <End Role="p_unit_measure" EntitySet="p_unit_measure" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hamazonEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="family" EntityType="hamazonEntities.family" />
+          <EntitySet Name="p_brand" EntityType="hamazonEntities.p_brand" />
+          <EntitySet Name="p_category" EntityType="hamazonEntities.p_category" />
+          <EntitySet Name="p_provider" EntityType="hamazonEntities.p_provider" />
+          <EntitySet Name="p_unit_measure" EntityType="hamazonEntities.p_unit_measure" />
+          <EntitySet Name="product" EntityType="hamazonEntities.product" />
+          <EntitySet Name="product_category" EntityType="hamazonEntities.product_category" />
+          <AssociationSet Name="FamilyFk" Association="hamazonEntities.FamilyFk">
+            <End Role="family" EntitySet="family" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="productMkt" Association="hamazonEntities.productMkt">
+            <End Role="product" EntitySet="product" />
+            <End Role="family" EntitySet="family" />
+          </AssociationSet>
+          <AssociationSet Name="BrandFk" Association="hamazonEntities.BrandFk">
+            <End Role="p_brand" EntitySet="p_brand" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="category_product_category_FK" Association="hamazonEntities.category_product_category_FK">
+            <End Role="p_category" EntitySet="p_category" />
+            <End Role="product_category" EntitySet="product_category" />
+          </AssociationSet>
+          <AssociationSet Name="ExchangeProvider2Fk" Association="hamazonEntities.ExchangeProvider2Fk">
+            <End Role="p_provider" EntitySet="p_provider" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="ExchangeProviderFk" Association="hamazonEntities.ExchangeProviderFk">
+            <End Role="p_provider" EntitySet="p_provider" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="ProviderFk" Association="hamazonEntities.ProviderFk">
+            <End Role="p_provider" EntitySet="p_provider" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="unit_measure_product_FK" Association="hamazonEntities.unit_measure_product_FK">
+            <End Role="p_unit_measure" EntitySet="p_unit_measure" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="UnitMeasureFk" Association="hamazonEntities.UnitMeasureFk">
+            <End Role="p_unit_measure" EntitySet="p_unit_measure" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="ProductsFk" Association="hamazonEntities.ProductsFk">
+            <End Role="product" EntitySet="product" />
+            <End Role="product_category" EntitySet="product_category" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="family">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ProductMkt" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsertUserId" Type="Int32" />
+          <NavigationProperty Name="product" Relationship="hamazonEntities.FamilyFk" FromRole="family" ToRole="product" />
+          <NavigationProperty Name="product1" Relationship="hamazonEntities.productMkt" FromRole="family" ToRole="product" />
+        </EntityType>
+        <EntityType Name="p_brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="hamazonEntities.BrandFk" FromRole="p_brand" ToRole="product" />
+        </EntityType>
+        <EntityType Name="p_category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="FatherId" Type="Int32" />
+          <Property Name="CategoryLevel" Type="Int32" />
+          <Property Name="OrderNumber" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="PathUrl" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product_category" Relationship="hamazonEntities.category_product_category_FK" FromRole="p_category" ToRole="product_category" />
+        </EntityType>
+        <EntityType Name="p_provider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="TelPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Phone2" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Town" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StreetName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StreetNumber" Type="Int32" />
+          <Property Name="HouseNumber" Type="Int32" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AddressComment" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ComaxId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Tz" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryFrequencyId" Type="Int32" />
+          <Property Name="CompleteCarton" Type="Boolean" />
+          <Property Name="SafetyStock" Type="Int32" />
+          <Property Name="PartSafetyStock" Type="Int32" />
+          <Property Name="OrderThroughId" Type="Int32" />
+          <Property Name="internalId" Type="Int32" />
+          <NavigationProperty Name="product" Relationship="hamazonEntities.ExchangeProvider2Fk" FromRole="p_provider" ToRole="product" />
+          <NavigationProperty Name="product1" Relationship="hamazonEntities.ExchangeProviderFk" FromRole="p_provider" ToRole="product" />
+          <NavigationProperty Name="product2" Relationship="hamazonEntities.ProviderFk" FromRole="p_provider" ToRole="product" />
+        </EntityType>
+        <EntityType Name="p_unit_measure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="hamazonEntities.unit_measure_product_FK" FromRole="p_unit_measure" ToRole="product" />
+          <NavigationProperty Name="product1" Relationship="hamazonEntities.UnitMeasureFk" FromRole="p_unit_measure" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Mkt" />
+          </Key>
+          <Property Name="Mkt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubMkt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Barcode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StorageModeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="ViewBrand" Type="Boolean" Nullable="false" />
+          <Property Name="PackageQuantity" Type="Int32" />
+          <Property Name="WeightQuantity" Type="Double" />
+          <Property Name="UnitMeasureId" Type="Int32" Nullable="false" />
+          <Property Name="Weighable" Type="Boolean" Nullable="false" />
+          <Property Name="WeightUnit" Type="Double" />
+          <Property Name="FamilyId" Type="Int32" />
+          <Property Name="ViewOutOfStockId" Type="Int32" Nullable="false" />
+          <Property Name="KashrutFeatureId" Type="Int32" Nullable="false" />
+          <Property Name="KashrutId" Type="Int32" Nullable="false" />
+          <Property Name="PassoverKashrutId" Type="Int32" />
+          <Property Name="PassoverFeatureId" Type="Int32" />
+          <Property Name="AfterPassoverId" Type="Int32" />
+          <Property Name="VerifyKashrut" Type="Boolean" Nullable="false" />
+          <Property Name="DairyId" Type="Int32" />
+          <Property Name="DepositProduct" Type="Boolean" />
+          <Property Name="VatProduct" Type="Boolean" />
+          <Property Name="SupervisedPrice" Type="Boolean" />
+          <Property Name="BuyingPrice" Type="Double" />
+          <Property Name="PricePerProfitPercent" Type="Double" />
+          <Property Name="Package_PricePerUnit" Type="Double" />
+          <Property Name="ManufacturerId" Type="Int32" />
+          <Property Name="ProviderId" Type="Int32" />
+          <Property Name="ExchangeProviderId" Type="Int32" />
+          <Property Name="ExchangeProvider2Id" Type="Int32" />
+          <Property Name="GrossWeightLoss" Type="Double" />
+          <Property Name="ManufacturerPackageQuantity" Type="Int32" />
+          <Property Name="MiniPackageQuantity" Type="Int32" />
+          <Property Name="MasterPackageQuantity" Type="Int32" />
+          <Property Name="FlatQuantity" Type="Int32" />
+          <Property Name="ManufacturerPackageWeight" Type="Double" />
+          <Property Name="ManufacturerPackageSize" Type="Int32" />
+          <Property Name="UnloadManufacturerPackageId" Type="Int32" />
+          <Property Name="BoxQuantity" Type="Int32" />
+          <Property Name="BoxTypeId" Type="Int32" />
+          <Property Name="BoxStorageWayId" Type="Int32" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="Cube" Type="Int32" />
+          <Property Name="Action" Type="Int32" />
+          <Property Name="ExpiredDays" Type="Int32" />
+          <Property Name="MinExpiredDays" Type="Int32" />
+          <Property Name="ExpiredAllert" Type="Boolean" />
+          <Property Name="Separated" Type="Boolean" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateDateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyProduct" Type="Boolean" Nullable="false" />
+          <Property Name="CollectedProduct" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="DailyUpdate" Type="Boolean" />
+          <Property Name="orderNumber" Type="Double" Nullable="false" />
+          <Property Name="WeightJump" Type="Double" Nullable="false" />
+          <Property Name="GrossWeight" Type="Double" Nullable="false" />
+          <Property Name="NewInGs1" Type="Boolean" Nullable="false" />
+          <Property Name="ProductGs1Id" Type="Int32" />
+          <Property Name="ShowExpired" Type="Boolean" />
+          <Property Name="NewStatus" Type="Int32" />
+          <NavigationProperty Name="family" Relationship="hamazonEntities.FamilyFk" FromRole="product" ToRole="family" />
+          <NavigationProperty Name="family1" Relationship="hamazonEntities.productMkt" FromRole="product" ToRole="family" />
+          <NavigationProperty Name="p_brand" Relationship="hamazonEntities.BrandFk" FromRole="product" ToRole="p_brand" />
+          <NavigationProperty Name="p_provider" Relationship="hamazonEntities.ExchangeProvider2Fk" FromRole="product" ToRole="p_provider" />
+          <NavigationProperty Name="p_provider1" Relationship="hamazonEntities.ExchangeProviderFk" FromRole="product" ToRole="p_provider" />
+          <NavigationProperty Name="p_provider2" Relationship="hamazonEntities.ProviderFk" FromRole="product" ToRole="p_provider" />
+          <NavigationProperty Name="p_unit_measure" Relationship="hamazonEntities.unit_measure_product_FK" FromRole="product" ToRole="p_unit_measure" />
+          <NavigationProperty Name="p_unit_measure1" Relationship="hamazonEntities.UnitMeasureFk" FromRole="product" ToRole="p_unit_measure" />
+          <NavigationProperty Name="product_category" Relationship="hamazonEntities.ProductsFk" FromRole="product" ToRole="product_category" />
+        </EntityType>
+        <EntityType Name="product_category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductMkt" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="p_category" Relationship="hamazonEntities.category_product_category_FK" FromRole="product_category" ToRole="p_category" />
+          <NavigationProperty Name="product" Relationship="hamazonEntities.ProductsFk" FromRole="product_category" ToRole="product" />
+        </EntityType>
+        <Association Name="FamilyFk">
+          <End Type="hamazonEntities.family" Role="family" Multiplicity="0..1" />
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="family">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="FamilyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productMkt">
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="0..1" />
+          <End Type="hamazonEntities.family" Role="family" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Mkt" />
+            </Principal>
+            <Dependent Role="family">
+              <PropertyRef Name="ProductMkt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BrandFk">
+          <End Type="hamazonEntities.p_brand" Role="p_brand" Multiplicity="1" />
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_product_category_FK">
+          <End Type="hamazonEntities.p_category" Role="p_category" Multiplicity="1" />
+          <End Type="hamazonEntities.product_category" Role="product_category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product_category">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExchangeProvider2Fk">
+          <End Type="hamazonEntities.p_provider" Role="p_provider" Multiplicity="0..1" />
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ExchangeProvider2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExchangeProviderFk">
+          <End Type="hamazonEntities.p_provider" Role="p_provider" Multiplicity="0..1" />
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ExchangeProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProviderFk">
+          <End Type="hamazonEntities.p_provider" Role="p_provider" Multiplicity="0..1" />
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_provider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="ProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="unit_measure_product_FK">
+          <End Type="hamazonEntities.p_unit_measure" Role="p_unit_measure" Multiplicity="1" />
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_unit_measure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="UnitMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UnitMeasureFk">
+          <End Type="hamazonEntities.p_unit_measure" Role="p_unit_measure" Multiplicity="1" />
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p_unit_measure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="UnitMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductsFk">
+          <End Type="hamazonEntities.product" Role="product" Multiplicity="1" />
+          <End Type="hamazonEntities.product_category" Role="product_category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Mkt" />
+            </Principal>
+            <Dependent Role="product_category">
+              <PropertyRef Name="ProductMkt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hamazonEntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="family">
+            <EntityTypeMapping TypeName="hamazonEntities.family">
+              <MappingFragment StoreEntitySet="family">
+                <ScalarProperty Name="InsertUserId" ColumnName="InsertUserId" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ProductMkt" ColumnName="ProductMkt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p_brand">
+            <EntityTypeMapping TypeName="hamazonEntities.p_brand">
+              <MappingFragment StoreEntitySet="p_brand">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p_category">
+            <EntityTypeMapping TypeName="hamazonEntities.p_category">
+              <MappingFragment StoreEntitySet="p_category">
+                <ScalarProperty Name="PathUrl" ColumnName="PathUrl" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="CategoryLevel" ColumnName="CategoryLevel" />
+                <ScalarProperty Name="FatherId" ColumnName="FatherId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p_provider">
+            <EntityTypeMapping TypeName="hamazonEntities.p_provider">
+              <MappingFragment StoreEntitySet="p_provider">
+                <ScalarProperty Name="internalId" ColumnName="internalId" />
+                <ScalarProperty Name="OrderThroughId" ColumnName="OrderThroughId" />
+                <ScalarProperty Name="PartSafetyStock" ColumnName="PartSafetyStock" />
+                <ScalarProperty Name="SafetyStock" ColumnName="SafetyStock" />
+                <ScalarProperty Name="CompleteCarton" ColumnName="CompleteCarton" />
+                <ScalarProperty Name="DeliveryFrequencyId" ColumnName="DeliveryFrequencyId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Tz" ColumnName="Tz" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ComaxId" ColumnName="ComaxId" />
+                <ScalarProperty Name="AddressComment" ColumnName="AddressComment" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p_unit_measure">
+            <EntityTypeMapping TypeName="hamazonEntities.p_unit_measure">
+              <MappingFragment StoreEntitySet="p_unit_measure">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="hamazonEntities.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="NewStatus" ColumnName="NewStatus" />
+                <ScalarProperty Name="ShowExpired" ColumnName="ShowExpired" />
+                <ScalarProperty Name="ProductGs1Id" ColumnName="ProductGs1Id" />
+                <ScalarProperty Name="NewInGs1" ColumnName="NewInGs1" />
+                <ScalarProperty Name="GrossWeight" ColumnName="GrossWeight" />
+                <ScalarProperty Name="WeightJump" ColumnName="WeightJump" />
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="DailyUpdate" ColumnName="DailyUpdate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CollectedProduct" ColumnName="CollectedProduct" />
+                <ScalarProperty Name="FamilyProduct" ColumnName="FamilyProduct" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Separated" ColumnName="Separated" />
+                <ScalarProperty Name="ExpiredAllert" ColumnName="ExpiredAllert" />
+                <ScalarProperty Name="MinExpiredDays" ColumnName="MinExpiredDays" />
+                <ScalarProperty Name="ExpiredDays" ColumnName="ExpiredDays" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Cube" ColumnName="Cube" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="BoxStorageWayId" ColumnName="BoxStorageWayId" />
+                <ScalarProperty Name="BoxTypeId" ColumnName="BoxTypeId" />
+                <ScalarProperty Name="BoxQuantity" ColumnName="BoxQuantity" />
+                <ScalarProperty Name="UnloadManufacturerPackageId" ColumnName="UnloadManufacturerPackageId" />
+                <ScalarProperty Name="ManufacturerPackageSize" ColumnName="ManufacturerPackageSize" />
+                <ScalarProperty Name="ManufacturerPackageWeight" ColumnName="ManufacturerPackageWeight" />
+                <ScalarProperty Name="FlatQuantity" ColumnName="FlatQuantity" />
+                <ScalarProperty Name="MasterPackageQuantity" ColumnName="MasterPackageQuantity" />
+                <ScalarProperty Name="MiniPackageQuantity" ColumnName="MiniPackageQuantity" />
+                <ScalarProperty Name="ManufacturerPackageQuantity" ColumnName="ManufacturerPackageQuantity" />
+                <ScalarProperty Name="GrossWeightLoss" ColumnName="GrossWeightLoss" />
+                <ScalarProperty Name="ExchangeProvider2Id" ColumnName="ExchangeProvider2Id" />
+                <ScalarProperty Name="ExchangeProviderId" ColumnName="ExchangeProviderId" />
+                <ScalarProperty Name="ProviderId" ColumnName="ProviderId" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="Package_PricePerUnit" ColumnName="Package_PricePerUnit" />
+                <ScalarProperty Name="PricePerProfitPercent" ColumnName="PricePerProfitPercent" />
+                <ScalarProperty Name="BuyingPrice" ColumnName="BuyingPrice" />
+                <ScalarProperty Name="SupervisedPrice" ColumnName="SupervisedPrice" />
+                <ScalarProperty Name="VatProduct" ColumnName="VatProduct" />
+                <ScalarProperty Name="DepositProduct" ColumnName="DepositProduct" />
+                <ScalarProperty Name="DairyId" ColumnName="DairyId" />
+                <ScalarProperty Name="VerifyKashrut" ColumnName="VerifyKashrut" />
+                <ScalarProperty Name="AfterPassoverId" ColumnName="AfterPassoverId" />
+                <ScalarProperty Name="PassoverFeatureId" ColumnName="PassoverFeatureId" />
+                <ScalarProperty Name="PassoverKashrutId" ColumnName="PassoverKashrutId" />
+                <ScalarProperty Name="KashrutId" ColumnName="KashrutId" />
+                <ScalarProperty Name="KashrutFeatureId" ColumnName="KashrutFeatureId" />
+                <ScalarProperty Name="ViewOutOfStockId" ColumnName="ViewOutOfStockId" />
+                <ScalarProperty Name="FamilyId" ColumnName="FamilyId" />
+                <ScalarProperty Name="WeightUnit" ColumnName="WeightUnit" />
+                <ScalarProperty Name="Weighable" ColumnName="Weighable" />
+                <ScalarProperty Name="UnitMeasureId" ColumnName="UnitMeasureId" />
+                <ScalarProperty Name="WeightQuantity" ColumnName="WeightQuantity" />
+                <ScalarProperty Name="PackageQuantity" ColumnName="PackageQuantity" />
+                <ScalarProperty Name="ViewBrand" ColumnName="ViewBrand" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StorageModeId" ColumnName="StorageModeId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="SubMkt" ColumnName="SubMkt" />
+                <ScalarProperty Name="Mkt" ColumnName="Mkt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_category">
+            <EntityTypeMapping TypeName="hamazonEntities.product_category">
+              <MappingFragment StoreEntitySet="product_category">
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ProductMkt" ColumnName="ProductMkt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

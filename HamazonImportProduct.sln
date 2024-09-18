@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamazonImportProduct", "HamazonImportProduct\HamazonImportProduct.csproj", "{CACC0584-72D0-4DE7-AE7E-4E59F4AAEB3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{FFB99ADB-A75E-4FEF-A217-CA4238B81AC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CACC0584-72D0-4DE7-AE7E-4E59F4AAEB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CACC0584-72D0-4DE7-AE7E-4E59F4AAEB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CACC0584-72D0-4DE7-AE7E-4E59F4AAEB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CACC0584-72D0-4DE7-AE7E-4E59F4AAEB3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB99ADB-A75E-4FEF-A217-CA4238B81AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB99ADB-A75E-4FEF-A217-CA4238B81AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB99ADB-A75E-4FEF-A217-CA4238B81AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB99ADB-A75E-4FEF-A217-CA4238B81AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2F46A88-6D8F-4C40-8563-ED245BC991E4}
+	EndGlobalSection
+EndGlobal

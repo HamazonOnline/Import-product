@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6bdd319f1e0d4ae19c8a7de074da0840" Name="Diagram1">
+        <EntityTypeShape EntityType="hamazonEntities.family" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="hamazonEntities.p_brand" Width="1.5" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="hamazonEntities.p_category" Width="1.5" PointX="3" PointY="17.75" />
+        <EntityTypeShape EntityType="hamazonEntities.p_provider" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="hamazonEntities.p_unit_measure" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="hamazonEntities.product" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="hamazonEntities.product_category" Width="1.5" PointX="5.25" PointY="6.875" />
+        <AssociationConnector Association="hamazonEntities.FamilyFk" />
+        <AssociationConnector Association="hamazonEntities.productMkt" />
+        <AssociationConnector Association="hamazonEntities.BrandFk" />
+        <AssociationConnector Association="hamazonEntities.category_product_category_FK" />
+        <AssociationConnector Association="hamazonEntities.ExchangeProvider2Fk" />
+        <AssociationConnector Association="hamazonEntities.ExchangeProviderFk" />
+        <AssociationConnector Association="hamazonEntities.ProviderFk" />
+        <AssociationConnector Association="hamazonEntities.unit_measure_product_FK" />
+        <AssociationConnector Association="hamazonEntities.UnitMeasureFk" />
+        <AssociationConnector Association="hamazonEntities.ProductsFk" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
